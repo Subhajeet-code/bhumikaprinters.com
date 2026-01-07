@@ -57,6 +57,26 @@ export default function Contact() {
     },
   ];
 
+  const handleDownloadQR = async () => {
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=${encodeURIComponent(
+      "https://bhumikaprinters.netlify.app/"
+    )}`;
+
+    const response = await fetch(qrUrl);
+    const blob = await response.blob();
+
+    const blobUrl = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = "bhoomika-printers-qr.png";
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(blobUrl);
+  };
+
   return (
     <section
       id="contact"
@@ -99,12 +119,11 @@ export default function Contact() {
           </div>
 
           <button
-            onClick={() => setShowQR(true)}
-            aria-label="Share Bhumika Printers website via QR code"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 font-semibold shadow-lg shadow-indigo-500/30 transition active:scale-95"
+            onClick={handleDownloadQR}
+            className="inline-flex items-center gap-2 mt-6 px-5 py-3 bg-gray-900 text-white rounded-lg transition hover:opacity-90"
           >
-            <QrCode size={20} />
-            Share via QR Code
+            <Download size={18} />
+            Download QR
           </button>
         </div>
       </div>

@@ -120,7 +120,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-16">
-          <h3 className="text-4xl font-bold text-white mb-4">Our Services</h3>
+          <h1 className="text-4xl font-bold text-white mb-4">Our Services</h1>
           <p className="text-indigo-200 max-w-2xl mx-auto">
             Complete printing solutions designed for business and personal needs
           </p>
